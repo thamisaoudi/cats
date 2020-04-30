@@ -67,7 +67,7 @@ namespace Cat.Service.Api.DataLayer
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             cmd.Parameters.Add(new SqlParameter("catid", catid));
-            //cmd.Parameters.Add(new SqlParameter("type", type));
+            cmd.Parameters.Add(new SqlParameter("type", type));
 
             da.Fill(ds, "votes");
             List<TVote> LIST_RETURN = new List<TVote>();
@@ -76,7 +76,7 @@ namespace Cat.Service.Api.DataLayer
                 TVote _inv = new TVote
                 {
                     VoteId = Convert.ToInt32(item["VoteId"]),
-                    CreationDate = Convert.ToDateTime(item["LostCatId"].ToString()),
+                    CreationDate = Convert.ToDateTime(item["creationdate"].ToString()),
                     WinCatId = Convert.ToInt32(item["WinCatId"]),
                     LostCatId = Convert.ToInt32(item["LostCatId"])
                 };
